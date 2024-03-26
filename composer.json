@@ -1,0 +1,23 @@
+{
+    "name": "rukavishnikov/psr-http-message",
+    "type": "library",
+    "description": "A PSR-7 HTTP message interfaces implementation",
+    "keywords": ["php", "psr", "psr-7", "http", "message"],
+    "homepage": "https://github.com/Ilya-Ruk/psr-http-message",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ilya Rukavishnikov",
+            "email": "ilya-ndt@mail.ru"
+        }
+    ],
+    "require": {
+        "php": ">=8.0",
+        "psr/http-message": "^2.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Rukavishnikov\\Psr\\Http\\Message\\": "src/"
+        }
+    }
+}
