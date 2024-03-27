@@ -125,8 +125,16 @@ final class ServerRequest implements ServerRequestInterface
      */
     private function createUri(): UriInterface
     {
+        if (isset($_SERVER['REQUEST_SCHEME'])) {
+            $scheme = strtolower($_SERVER['REQUEST_SCHEME']);
+        } elseif (isset($_SERVER['HTTPS']) && strtolower($_SERVER['HTTPS']) == 'on') {
+            $scheme = 'https';
+        } else {
+            $scheme = 'http';
+        }
+
         return (new Uri())
-            ->withScheme($_SERVER['REQUEST_SCHEME'] ?? '')
+            ->withScheme($scheme)
             ->withHost($_SERVER['HTTP_HOST'] ?? '')
             ->withPort($_SERVER['SERVER_PORT'] ? (int)$_SERVER['SERVER_PORT'] : null)
             ->withPath($_SERVER['REQUEST_URI'] ? explode('?', $_SERVER['REQUEST_URI'])[0] : '')
