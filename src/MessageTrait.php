@@ -178,9 +178,9 @@ trait MessageTrait
         if (!in_array($protocolVersion, self::$supportedProtocolVersion)) {
             throw new RuntimeException(
                 sprintf(
-                    "Protocol version '%s' not supported! Protocol version must be in (%s).",
+                    "Protocol version '%s' not supported! Protocol version must be in ('%s').",
                     $protocolVersion,
-                    implode(', ', self::$supportedProtocolVersion)
+                    implode("', '", self::$supportedProtocolVersion)
                 ),
                 505
             );

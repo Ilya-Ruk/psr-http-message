@@ -78,9 +78,9 @@ final class Uri implements UriInterface
         if (!array_key_exists($scheme, self::SCHEME_TO_PORT)) {
             throw new InvalidArgumentException(
                 sprintf(
-                    "Scheme '%s' not supported! Scheme must be in (%s).",
+                    "Scheme '%s' not supported! Scheme must be in ('%s').",
                     $scheme,
-                    implode(', ', array_keys(self::SCHEME_TO_PORT))
+                    implode("', '", array_keys(self::SCHEME_TO_PORT))
                 ),
                 400
             );
@@ -114,9 +114,9 @@ final class Uri implements UriInterface
         if (!array_key_exists($scheme, self::SCHEME_TO_PORT)) {
             throw new InvalidArgumentException(
                 sprintf(
-                    "Scheme '%s' not supported! Scheme must be in (%s).",
+                    "Scheme '%s' not supported! Scheme must be in ('%s').",
                     $scheme,
-                    implode(', ', array_keys(self::SCHEME_TO_PORT))
+                    implode("', '", array_keys(self::SCHEME_TO_PORT))
                 ),
                 400
             );
