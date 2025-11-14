@@ -162,7 +162,7 @@ trait MessageTrait
     private function prepareProtocolVersion(?string $protocolVersion = null): string
     {
         if (is_null($protocolVersion)) {
-            $serverProtocol = $_SERVER['SERVER_PROTOCOL'] ?? null; // TODO
+            $serverProtocol = $_SERVER['SERVER_PROTOCOL'] ?? null;
 
             if (is_null($serverProtocol)) {
                 throw new RuntimeException('Server protocol not defined!', 500);
