@@ -11,7 +11,7 @@ use RuntimeException;
 trait MessageTrait
 {
     /**
-     * @var array
+     * @var string[]
      */
     private static array $supportedProtocolVersion = ['1.0', '1.1', '2'];
 
