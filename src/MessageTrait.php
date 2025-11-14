@@ -44,6 +44,17 @@ trait MessageTrait
      */
     public function withProtocolVersion(string $version): MessageInterface
     {
+        if (!in_array($version, self::$supportedProtocolVersion)) {
+            throw new RuntimeException(
+                sprintf(
+                    "Protocol version '%s' not supported! Protocol version must be in ('%s').",
+                    $version,
+                    implode("', '", self::$supportedProtocolVersion)
+                ),
+                505
+            );
+        }
+
         $new = clone $this;
 
         $new->protocolVersion = $version;
