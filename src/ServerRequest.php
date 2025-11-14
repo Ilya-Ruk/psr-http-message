@@ -72,7 +72,7 @@ final class ServerRequest implements ServerRequestInterface
         $this->cookieParams = $cookieParams ?? $_COOKIE;
         $this->queryParams = $queryParams ?? $_GET;
         $this->uploadedFiles = $uploadedFiles ?? $_FILES; // TODO: prepareUploadedFiles
-        $this->parsedBody = $parsedBody ?? $_POST; // TODO: prepareParsedBody
+        $this->parsedBody = $parsedBody ?? $_POST;
         $this->attributes = $attributes ?? [];
     }
 
