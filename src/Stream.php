@@ -10,6 +10,11 @@ use RuntimeException;
 final class Stream implements StreamInterface
 {
     /**
+     * @var string|null
+     */
+    private ?string $stream = null;
+
+    /**
      * @var resource|null
      */
     private $resource = null;
@@ -30,6 +35,7 @@ final class Stream implements StreamInterface
             throw new RuntimeException(sprintf("Stream '%s' type error!", $stream), 500);
         }
 
+        $this->stream = $stream;
         $this->resource = $resource;
     }
 
@@ -73,6 +79,7 @@ final class Stream implements StreamInterface
 
         $resource = $this->resource;
 
+        $this->stream = null;
         $this->resource = null;
 
         return $resource;
@@ -114,7 +121,7 @@ final class Stream implements StreamInterface
         $result = @ftell($this->resource);
 
         if ($result === false) {
-            throw new RuntimeException(sprintf("Stream '%s' tell error!", $this->resource), 500);
+            throw new RuntimeException(sprintf("Stream '%s' tell error!", $this->stream), 500);
         }
 
         return $result;
@@ -152,13 +159,13 @@ final class Stream implements StreamInterface
         }
 
         if (!$this->isSeekable()) {
-            throw new RuntimeException(sprintf("Stream '%s' not seekable!", $this->resource), 500);
+            throw new RuntimeException(sprintf("Stream '%s' not seekable!", $this->stream), 500);
         }
 
         $result = @fseek($this->resource, $offset, $whence);
 
         if ($result === -1) {
-            throw new RuntimeException(sprintf("Stream '%s' seek error!", $this->resource), 500);
+            throw new RuntimeException(sprintf("Stream '%s' seek error!", $this->stream), 500);
         }
     }
 
@@ -200,13 +207,13 @@ final class Stream implements StreamInterface
         }
 
         if (!$this->isWritable()) {
-            throw new RuntimeException(sprintf("Stream '%s' not writable!", $this->resource), 500);
+            throw new RuntimeException(sprintf("Stream '%s' not writable!", $this->stream), 500);
         }
 
         $result = @fwrite($this->resource, $string);
 
         if ($result === false || $result !== strlen($string)) {
-            throw new RuntimeException(sprintf("Stream '%s' write error!", $this->resource), 500);
+            throw new RuntimeException(sprintf("Stream '%s' write error!", $this->stream), 500);
         }
 
         return $result;
@@ -239,13 +246,13 @@ final class Stream implements StreamInterface
         }
 
         if (!$this->isReadable()) {
-            throw new RuntimeException(sprintf("Stream '%s' not readable!", $this->resource), 500);
+            throw new RuntimeException(sprintf("Stream '%s' not readable!", $this->stream), 500);
         }
 
         $str = @fread($this->resource, $length);
 
         if ($str === false) {
-            throw new RuntimeException(sprintf("Stream '%s' read error!", $this->resource), 500);
+            throw new RuntimeException(sprintf("Stream '%s' read error!", $this->stream), 500);
         }
 
         return $str;
@@ -261,13 +268,13 @@ final class Stream implements StreamInterface
         }
 
         if (!$this->isReadable()) {
-            throw new RuntimeException(sprintf("Stream '%s' not readable!", $this->resource), 500);
+            throw new RuntimeException(sprintf("Stream '%s' not readable!", $this->stream), 500);
         }
 
         $result = @stream_get_contents($this->resource);
 
         if ($result === false) {
-            throw new RuntimeException(sprintf("Stream '%s' get content error!", $this->resource), 500);
+            throw new RuntimeException(sprintf("Stream '%s' get content error!", $this->stream), 500);
         }
 
         return $result;
