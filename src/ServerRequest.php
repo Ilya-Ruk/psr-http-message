@@ -61,7 +61,7 @@ final class ServerRequest implements ServerRequestInterface
         ?array $queryParams = null,
         ?array $uploadedFiles = null,
         mixed $parsedBody = null,
-        ?array $attributes = null
+        ?array $attributes = null,
     ) {
         $this->protocolVersion = $this->prepareProtocolVersion($protocolVersion);
         $this->headers = $this->prepareHeaders($headers ?? $this->getAllHeaders());
