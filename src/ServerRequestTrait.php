@@ -50,35 +50,11 @@ trait ServerRequestTrait
     }
 
     /**
-     * @param string $name
-     * @param mixed|null $defaultValue
-     * @return mixed
-     */
-    public function getServerParam(string $name, mixed $defaultValue = null): mixed
-    {
-        $serverParams = $this->getServerParams();
-
-        return $serverParams[$name] ?? $defaultValue;
-    }
-
-    /**
      * @inheritDoc
      */
     public function getCookieParams(): array
     {
         return $this->cookieParams;
-    }
-
-    /**
-     * @param string $name
-     * @param mixed|null $defaultValue
-     * @return mixed
-     */
-    public function getCookieParam(string $name, mixed $defaultValue = null): mixed
-    {
-        $cookieParams = $this->getCookieParams();
-
-        return $cookieParams[$name] ?? $defaultValue;
     }
 
     /**
@@ -100,18 +76,6 @@ trait ServerRequestTrait
     public function getQueryParams(): array
     {
         return $this->queryParams;
-    }
-
-    /**
-     * @param string $name
-     * @param mixed|null $defaultValue
-     * @return mixed
-     */
-    public function getQueryParam(string $name, mixed $defaultValue = null): mixed
-    {
-        $queryParams = $this->getQueryParams();
-
-        return $queryParams[$name] ?? $defaultValue;
     }
 
     /**
@@ -154,26 +118,6 @@ trait ServerRequestTrait
     public function getParsedBody()
     {
         return $this->parsedBody;
-    }
-
-    /**
-     * @param string $name
-     * @param mixed|null $defaultValue
-     * @return mixed
-     */
-    public function getParsedBodyParam(string $name, mixed $defaultValue = null): mixed
-    {
-        $parsedBody = $this->getParsedBody();
-
-        if (is_null($parsedBody)) {
-            return $defaultValue;
-        }
-
-        if (is_object($parsedBody)) {
-            return $parsedBody->$name ?? $defaultValue;
-        }
-
-        return $parsedBody[$name] ?? $defaultValue;
     }
 
     /**
