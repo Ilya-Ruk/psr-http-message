@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Rukavishnikov\Psr\Http\Message;
 
+use InvalidArgumentException;
 use Psr\Http\Message\MessageInterface;
 use Psr\Http\Message\StreamInterface;
 use RuntimeException;
@@ -45,13 +46,13 @@ trait MessageTrait
     public function withProtocolVersion(string $version): MessageInterface
     {
         if (!in_array($version, self::$supportedProtocolVersion)) {
-            throw new RuntimeException(
+            throw new InvalidArgumentException(
                 sprintf(
                     "Protocol version '%s' not supported! Protocol version must be in ('%s').",
                     $version,
                     implode("', '", self::$supportedProtocolVersion)
                 ),
-                505
+                400
             );
         }
 
@@ -187,13 +188,13 @@ trait MessageTrait
         }
 
         if (!in_array($protocolVersion, self::$supportedProtocolVersion)) {
-            throw new RuntimeException(
+            throw new InvalidArgumentException(
                 sprintf(
                     "Protocol version '%s' not supported! Protocol version must be in ('%s').",
                     $protocolVersion,
                     implode("', '", self::$supportedProtocolVersion)
                 ),
-                505
+                400
             );
         }
 

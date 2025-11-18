@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Rukavishnikov\Psr\Http\Message;
 
+use InvalidArgumentException;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\StreamInterface;
 use Psr\Http\Message\UriInterface;
@@ -122,7 +123,7 @@ final class ServerRequest implements ServerRequestInterface
         }
 
         if (!in_array($method, self::$supportedMethod)) {
-            throw new RuntimeException('Method not supported!', 500);
+            throw new InvalidArgumentException(sprintf("Method '%s' not supported!", $method), 400);
         }
 
         return $method;
