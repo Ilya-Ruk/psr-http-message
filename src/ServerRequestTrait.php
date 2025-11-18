@@ -131,8 +131,7 @@ trait ServerRequestTrait
                 sprintf(
                     "Parsed body type error (required 'null', 'array' or 'object', but given '%s')!",
                     gettype($data)
-                ),
-                400
+                )
             );
         }
 

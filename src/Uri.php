@@ -70,7 +70,7 @@ final class Uri implements UriInterface
         $uriParsed = parse_url($uri);
 
         if ($uriParsed === false) {
-            throw new RuntimeException(sprintf("Parse URI '%s' error!", $uri), 500);
+            throw new RuntimeException(sprintf("Parse URI '%s' error!", $uri));
         }
 
         $scheme = $uriParsed['scheme'] ?? '';
@@ -81,8 +81,7 @@ final class Uri implements UriInterface
                     "Scheme '%s' not supported! Scheme must be in ('%s').",
                     $scheme,
                     implode("', '", array_keys(self::SCHEME_TO_PORT))
-                ),
-                400
+                )
             );
         }
 
@@ -117,8 +116,7 @@ final class Uri implements UriInterface
                     "Scheme '%s' not supported! Scheme must be in ('%s').",
                     $scheme,
                     implode("', '", array_keys(self::SCHEME_TO_PORT))
-                ),
-                400
+                )
             );
         }
 
@@ -223,8 +221,7 @@ final class Uri implements UriInterface
                     sprintf(
                         "Port '%s' not supported! Port must be in range [1..65535].",
                         $port
-                    ),
-                    400
+                    )
                 );
             }
         }

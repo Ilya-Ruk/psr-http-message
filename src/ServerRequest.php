@@ -85,7 +85,7 @@ final class ServerRequest implements ServerRequestInterface
         $headers = getallheaders();
 
         if ($headers === false) {
-            throw new RuntimeException('Get all headers error!', 500);
+            throw new RuntimeException('Get all headers error!');
         }
 
         return $headers;
@@ -101,7 +101,7 @@ final class ServerRequest implements ServerRequestInterface
             $requestTarget = $_SERVER['REQUEST_URI'] ?? null;
 
             if (is_null($requestTarget)) {
-                throw new RuntimeException('Request target not defined!', 500);
+                throw new RuntimeException('Request target not defined!');
             }
         }
 
@@ -118,12 +118,12 @@ final class ServerRequest implements ServerRequestInterface
             $method = $_SERVER['REQUEST_METHOD'] ?? null;
 
             if (is_null($method)) {
-                throw new RuntimeException('Request method not defined!', 500);
+                throw new RuntimeException('Request method not defined!');
             }
         }
 
         if (!in_array($method, self::$supportedMethod)) {
-            throw new InvalidArgumentException(sprintf("Method '%s' not supported!", $method), 400);
+            throw new InvalidArgumentException(sprintf("Method '%s' not supported!", $method));
         }
 
         return $method;

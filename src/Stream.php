@@ -28,11 +28,11 @@ final class Stream implements StreamInterface
         $resource = @fopen($stream, $mode);
 
         if ($resource === false) {
-            throw new RuntimeException(sprintf("Stream '%s' open error!", $stream), 500);
+            throw new RuntimeException(sprintf("Stream '%s' open error!", $stream));
         }
 
         if (!is_resource($resource) || get_resource_type($resource) !== 'stream') {
-            throw new RuntimeException(sprintf("Stream '%s' type error!", $stream), 500);
+            throw new RuntimeException(sprintf("Stream '%s' type error!", $stream));
         }
 
         $this->stream = $stream;
@@ -115,13 +115,13 @@ final class Stream implements StreamInterface
     public function tell(): int
     {
         if (!is_resource($this->resource)) {
-            throw new RuntimeException('Stream not defined!', 500);
+            throw new RuntimeException('Stream not defined!');
         }
 
         $result = @ftell($this->resource);
 
         if ($result === false) {
-            throw new RuntimeException(sprintf("Stream '%s' tell error!", $this->stream), 500);
+            throw new RuntimeException(sprintf("Stream '%s' tell error!", $this->stream));
         }
 
         return $result;
@@ -155,17 +155,17 @@ final class Stream implements StreamInterface
     public function seek(int $offset, int $whence = SEEK_SET): void
     {
         if (!is_resource($this->resource)) {
-            throw new RuntimeException('Stream not defined!', 500);
+            throw new RuntimeException('Stream not defined!');
         }
 
         if (!$this->isSeekable()) {
-            throw new RuntimeException(sprintf("Stream '%s' not seekable!", $this->stream), 500);
+            throw new RuntimeException(sprintf("Stream '%s' not seekable!", $this->stream));
         }
 
         $result = @fseek($this->resource, $offset, $whence);
 
         if ($result === -1) {
-            throw new RuntimeException(sprintf("Stream '%s' seek error!", $this->stream), 500);
+            throw new RuntimeException(sprintf("Stream '%s' seek error!", $this->stream));
         }
     }
 
@@ -203,17 +203,17 @@ final class Stream implements StreamInterface
     public function write(string $string): int
     {
         if (!is_resource($this->resource)) {
-            throw new RuntimeException('Stream not defined!', 500);
+            throw new RuntimeException('Stream not defined!');
         }
 
         if (!$this->isWritable()) {
-            throw new RuntimeException(sprintf("Stream '%s' not writable!", $this->stream), 500);
+            throw new RuntimeException(sprintf("Stream '%s' not writable!", $this->stream));
         }
 
         $result = @fwrite($this->resource, $string);
 
         if ($result === false || $result !== strlen($string)) {
-            throw new RuntimeException(sprintf("Stream '%s' write error!", $this->stream), 500);
+            throw new RuntimeException(sprintf("Stream '%s' write error!", $this->stream));
         }
 
         return $result;
@@ -242,17 +242,17 @@ final class Stream implements StreamInterface
     public function read(int $length): string
     {
         if (!is_resource($this->resource)) {
-            throw new RuntimeException('Stream not defined!', 500);
+            throw new RuntimeException('Stream not defined!');
         }
 
         if (!$this->isReadable()) {
-            throw new RuntimeException(sprintf("Stream '%s' not readable!", $this->stream), 500);
+            throw new RuntimeException(sprintf("Stream '%s' not readable!", $this->stream));
         }
 
         $str = @fread($this->resource, $length);
 
         if ($str === false) {
-            throw new RuntimeException(sprintf("Stream '%s' read error!", $this->stream), 500);
+            throw new RuntimeException(sprintf("Stream '%s' read error!", $this->stream));
         }
 
         return $str;
@@ -264,17 +264,17 @@ final class Stream implements StreamInterface
     public function getContents(): string
     {
         if (!is_resource($this->resource)) {
-            throw new RuntimeException('Stream not defined!', 500);
+            throw new RuntimeException('Stream not defined!');
         }
 
         if (!$this->isReadable()) {
-            throw new RuntimeException(sprintf("Stream '%s' not readable!", $this->stream), 500);
+            throw new RuntimeException(sprintf("Stream '%s' not readable!", $this->stream));
         }
 
         $result = @stream_get_contents($this->resource);
 
         if ($result === false) {
-            throw new RuntimeException(sprintf("Stream '%s' get content error!", $this->stream), 500);
+            throw new RuntimeException(sprintf("Stream '%s' get content error!", $this->stream));
         }
 
         return $result;

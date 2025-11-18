@@ -50,8 +50,7 @@ final class Response implements ResponseInterface
                 sprintf(
                     "Status code '%s' not supported! Status code must be in range [100..599]!",
                     $statusCode
-                ),
-                400
+                )
             );
         }
 

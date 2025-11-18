@@ -51,8 +51,7 @@ trait MessageTrait
                     "Protocol version '%s' not supported! Protocol version must be in ('%s').",
                     $version,
                     implode("', '", self::$supportedProtocolVersion)
-                ),
-                400
+                )
             );
         }
 
@@ -177,13 +176,13 @@ trait MessageTrait
             $serverProtocol = $_SERVER['SERVER_PROTOCOL'] ?? null;
 
             if (is_null($serverProtocol)) {
-                throw new RuntimeException('Server protocol not defined!', 500);
+                throw new RuntimeException('Server protocol not defined!');
             }
 
             $protocolVersion = explode('/', $serverProtocol)[1] ?? null;
 
             if (is_null($protocolVersion)) {
-                throw new RuntimeException('Server protocol version not defined!', 500);
+                throw new RuntimeException('Server protocol version not defined!');
             }
         }
 
@@ -193,8 +192,7 @@ trait MessageTrait
                     "Protocol version '%s' not supported! Protocol version must be in ('%s').",
                     $protocolVersion,
                     implode("', '", self::$supportedProtocolVersion)
-                ),
-                400
+                )
             );
         }
 
