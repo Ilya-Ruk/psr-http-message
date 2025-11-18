@@ -84,11 +84,40 @@ trait RequestTrait
      * @return static
      * @inheritDoc
      */
-    public function withUri(UriInterface $uri, bool $preserveHost = false): RequestInterface // TODO
+    public function withUri(UriInterface $uri, bool $preserveHost = false): RequestInterface
     {
         $new = clone $this;
 
         $new->uri = $uri;
+
+        $uriHost = $uri->getHost();
+        $uriPort = $uri->getPort();
+
+        if ($preserveHost) {
+            if (!$new->hasHeader('Host') || empty($new->getHeaderLine('Host'))) {
+                if (!empty($uriHost)) {
+                    $newHeaderHost = $uriHost;
+
+                    if (!is_null($uriPort)) {
+                        $newHeaderHost .= ':' . $uriPort;
+                    }
+
+                    return $new->withHeader('Host', [$newHeaderHost]);
+                }
+            }
+
+            return $new;
+        }
+
+        if (!empty($uriHost)) {
+            $newHeaderHost = $uriHost;
+
+            if (!is_null($uriPort)) {
+                $newHeaderHost .= ':' . $uriPort;
+            }
+
+            return $new->withHeader('Host', [$newHeaderHost]);
+        }
 
         return $new;
     }
