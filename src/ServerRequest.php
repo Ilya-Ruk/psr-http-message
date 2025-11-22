@@ -123,7 +123,13 @@ final class ServerRequest implements ServerRequestInterface
         }
 
         if (!in_array($method, self::$supportedMethod)) {
-            throw new InvalidArgumentException(sprintf("Method '%s' not supported!", $method));
+            throw new InvalidArgumentException(
+                sprintf(
+                    "Method '%s' not supported! Method must be in ('%s').",
+                    $method,
+                    implode("', '", self::$supportedMethod)
+                )
+            );
         }
 
         return $method;
