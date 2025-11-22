@@ -39,7 +39,6 @@ trait RequestTrait
     }
 
     /**
-     * @return static
      * @inheritDoc
      */
     public function withRequestTarget(string $requestTarget): RequestInterface
@@ -60,7 +59,6 @@ trait RequestTrait
     }
 
     /**
-     * @return static
      * @inheritDoc
      */
     public function withMethod(string $method): RequestInterface
@@ -81,7 +79,6 @@ trait RequestTrait
     }
 
     /**
-     * @return static
      * @inheritDoc
      */
     public function withUri(UriInterface $uri, bool $preserveHost = false): RequestInterface

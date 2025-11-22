@@ -40,7 +40,6 @@ trait MessageTrait
     }
 
     /**
-     * @return static
      * @inheritDoc
      */
     public function withProtocolVersion(string $version): MessageInterface
@@ -95,7 +94,6 @@ trait MessageTrait
     }
 
     /**
-     * @return static
      * @inheritDoc
      */
     public function withHeader(string $name, $value): MessageInterface
@@ -112,7 +110,6 @@ trait MessageTrait
     }
 
     /**
-     * @return static
      * @inheritDoc
      */
     public function withAddedHeader(string $name, $value): MessageInterface
@@ -133,7 +130,6 @@ trait MessageTrait
     }
 
     /**
-     * @return static
      * @inheritDoc
      */
     public function withoutHeader(string $name): MessageInterface
@@ -154,7 +150,6 @@ trait MessageTrait
     }
 
     /**
-     * @return static
      * @inheritDoc
      */
     public function withBody(StreamInterface $body): MessageInterface

@@ -58,7 +58,6 @@ trait ServerRequestTrait
     }
 
     /**
-     * @return static
      * @inheritDoc
      */
     public function withCookieParams(array $cookies): ServerRequestInterface
@@ -79,7 +78,6 @@ trait ServerRequestTrait
     }
 
     /**
-     * @return static
      * @inheritDoc
      */
     public function withQueryParams(array $query): ServerRequestInterface
@@ -100,7 +98,6 @@ trait ServerRequestTrait
     }
 
     /**
-     * @return static
      * @inheritDoc
      */
     public function withUploadedFiles(array $uploadedFiles): ServerRequestInterface
@@ -121,7 +118,6 @@ trait ServerRequestTrait
     }
 
     /**
-     * @return static
      * @inheritDoc
      */
     public function withParsedBody($data): ServerRequestInterface
@@ -161,7 +157,6 @@ trait ServerRequestTrait
     }
 
     /**
-     * @return static
      * @inheritDoc
      */
     public function withAttribute(string $name, $value): ServerRequestInterface
@@ -174,7 +169,6 @@ trait ServerRequestTrait
     }
 
     /**
-     * @return static
      * @inheritDoc
      */
     public function withoutAttribute(string $name): ServerRequestInterface

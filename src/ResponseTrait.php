@@ -88,7 +88,6 @@ trait ResponseTrait
     }
 
     /**
-     * @return static
      * @inheritDoc
      */
     public function withStatus(int $code, string $reasonPhrase = ''): ResponseInterface
